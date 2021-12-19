@@ -1,30 +1,23 @@
 import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { Redirect } from 'react-router-dom';
-import Welcome from './Welcome';
 
 class Login extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      name:'',
+      username:'',
       email:'',
-      phone:'',
       password:'',
       error:''
     }
   }
 
   onChangeName = (e) =>{
-    this.setState({name:e.target.value})
+    this.setState({username:e.target.value})
   }
 
   onChangeEmail = (e) =>{
     this.setState({email:e.target.value})
-  }
-
-  onChangePhone = (e) =>{
-    this.setState({phone:e.target.value})
   }
 
   onSubmit = (e) =>{
@@ -35,10 +28,10 @@ class Login extends React.Component {
     let oldArr = JSON.parse(olddata)
     oldArr.map(arr => 
       {
-        if(this.state.name.length > 0 && this.state.password.length > 0){
-          if (arr.name == this.state.name && (arr.password == this.state.password)) {
-            let user = this.state.name;
-            history.push({ pathname: "/welcome", user: this.state.name });
+        if(this.state.username.length > 0 && this.state.password.length > 0){
+          if (arr.username == this.state.username && (arr.password == this.state.password)) {
+            let user = this.state.username;
+            history.push({ pathname: "/welcome", user: this.state.username });
           }else{
             this.setState({error:'Please check your email or password'})
           }
@@ -59,8 +52,8 @@ class Login extends React.Component {
           {this.state.error}
         </p>
         <div className="form-group">
-          <label>Name</label>
-          <input type="text" className="form-control" value={this.state.name} onChange={this.onChangeName} required />
+          <label>Username</label>
+          <input type="text" className="form-control" value={this.state.username} onChange={this.onChangeName} required />
         </div>
         <div className="form-group">
           <label>Password</label>
